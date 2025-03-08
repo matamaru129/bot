@@ -1,6 +1,5 @@
 import { createBot, getBotIdFromToken, startBot } from "@discordeno/mod.ts";
-
-import "$std/dotenv/load.ts"
+import "$std/dotenv/load.ts";
 
 // Botのトークンを.envから取得
 const BotToken: string = Deno.env.get("BOT_TOKEN")!;
@@ -19,4 +18,9 @@ const bot = createBot({
     }
 });
 
-await startBot(bot);
+// 非同期で実行する関数
+async function runBot() {
+    await startBot(bot); // startBotを非同期で実行
+}
+
+runBot();  // runBot関数を呼び出すことでBotの起動を管理
