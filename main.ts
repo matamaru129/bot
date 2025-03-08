@@ -8,7 +8,7 @@ const BotToken: string = Deno.env.get("BOT_TOKEN")!;
 const cleanToken = BotToken.replace(/^Bot /, "");
 
 // 送信先チャンネルのIDを指定
-const channelId = "YOUR_CHANNEL_ID"; // ここにチャンネルIDを設定
+const channelId = "1343926776757354579"; // ここにチャンネルIDを設定
 
 // ボットの作成
 const bot = createBot({
