@@ -24,3 +24,7 @@ async function runBot() {
 }
 
 runBot();  // runBot関数を呼び出すことでBotの起動を管理
+
+Deno.cron("Continuous Request", "*/2 * * * *", () => {
+    console.log("running...");
+});
