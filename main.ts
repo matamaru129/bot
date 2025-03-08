@@ -4,13 +4,16 @@ import "$std/dotenv/load.ts";
 // Botのトークンを.envから取得
 const BotToken: string = Deno.env.get("BOT_TOKEN")!;
 
+// プレフィックス「Bot」を取り除く
+const cleanToken = BotToken.replace(/^Bot /, "");
+
 // 送信先チャンネルのIDを指定
-const channelId = "1343926776757354579"; // ここにチャンネルIDを設定
+const channelId = "YOUR_CHANNEL_ID"; // ここにチャンネルIDを設定
 
 // ボットの作成
 const bot = createBot({
-    token: BotToken,
-    botId: getBotIdFromToken(BotToken) as bigint,
+    token: cleanToken,  // プレフィックスを削除したトークンを使用
+    botId: getBotIdFromToken(cleanToken) as bigint,
 
     // イベント発火時に実行する関数など
     events: {
@@ -34,6 +37,7 @@ const bot = createBot({
 
 // ボットを起動
 await startBot(bot);
+
 
 Deno.cron("Continuous Request", "*/2 * * * *", () => {
     console.log("running...");
