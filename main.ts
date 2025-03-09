@@ -21,6 +21,8 @@ const bot = createBot({
         ready: (_bot, payload) => {
             console.log(`${payload.user.username} is ready!`);
         },
+        
+        await sendMessage(message.channelId, {content: "ナイト"});
 
         // メッセージ受信時
         messageCreate: async (_bot, message) => {
