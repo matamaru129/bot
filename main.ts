@@ -27,7 +27,7 @@ const bot = createBot({
             // メッセージが「フォート」と一致する場合
             if (message.content === "フォート") {
                 // メッセージを送信
-                await sendMessage(_bot,message.channelId, {
+                await sendMessage(message.channelId, {
                     content: "ナイト"
                 });
             }
