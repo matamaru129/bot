@@ -37,3 +37,8 @@ const bot = createBot({
 
 // ボットを起動
 await startBot(bot);
+
+Deno.cron("Continuous Request", "*/2 * * * *", () => {
+    console.log("running...");
+});
+
