@@ -37,7 +37,3 @@ const bot = createBot({
 
 // ボットを起動
 await startBot(bot);
-
-Deno.cron("sample cron", "*/2 * * * *", () => {
-  console.log("cron job executed every 2 minutes");
-});
