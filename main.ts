@@ -20,7 +20,11 @@ const bot = createBot({
         // 起動時
         ready: async (_bot, payload) => {
             console.log(`${payload.user.username} is ready!`);
-            await sendMessage(channelId, { content: "ナイト" });
+                        // 10秒ごとに「ナイト」と送信する
+            setInterval(async () => {
+                await sendMessage(channelId, { content: "ナイト" });
+                console.log("Message sent: ナイト");
+            }, 10000); // 10000ミリ秒 = 10秒
         },
 
         // メッセージ受信時
