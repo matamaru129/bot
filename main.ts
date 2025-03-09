@@ -3,8 +3,10 @@ import "$std/dotenv/load.ts";
 
 // Botのトークンを.envから取得
 const BotToken: string = Deno.env.get("BOT_TOKEN")!;
+
 // プレフィックス「Bot 」を取り除く
 const cleanToken = BotToken.replace(/^Bot /, "");
+
 // 送信先チャンネルのIDを指定
 const channelId = "1343926776757354579"; // ここにチャンネルIDを設定
 
@@ -12,19 +14,21 @@ const channelId = "1343926776757354579"; // ここにチャンネルIDを設定
 const bot = createBot({
     token: cleanToken,  // プレフィックスを削除したトークンを使用
     botId: getBotIdFromToken(cleanToken) as bigint,
+
     // イベント発火時に実行する関数など
     events: {
         // 起動時
-        ready(_bot, payload) {
+        ready: async (_bot, payload) => {
             console.log(`${payload.user.username} is ready!`);
-            sendMessage(bot, channelId, { content: "ナイト" });
+            await sendMessage(channelId, { content: "ナイト" });
         },
+
         // メッセージ受信時
-        messageCreate(_bot, message) {
+        messageCreate: async (_bot, message) => {
             // メッセージが「フォート」と一致する場合
             if (message.content === "フォート") {
                 // メッセージを送信
-                sendMessage(bot, message.channelId, { content: "ナイト" });
+                await sendMessage(message.channelId, { content: "ナイト" });
             }
         }
     }
